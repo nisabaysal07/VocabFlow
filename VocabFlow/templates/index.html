@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VocabFlow - Login</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="login-form">
+                <h1>VocabFlow</h1>
+                <form method="POST">
+                    <input type="text" name="ad" placeholder="Kullanici Adı" required>
+                    <input type="email" name="mail" placeholder="Mail" required>
+                    <button type="submit" class="submit-btn">Giriş Yap</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}VocabFlow - Destelerim{% endblock%}
+
+{% block body %}<div class="container">
+    <a href="{{ url_for('deste_ekle')}}" class="btn">Yeni Deste Ekle</a>
+            
+            <div class="home-deste">
+                <h2>Bütün destelerini burada bulabilirsin!</h2>
+                
+                
+                <div class="block">
+                    {% for deste in kullanici_deste %}
+                    <div class="deste">
+                        <h3>
+                            <a href="{{ url_for('kart_liste', deste_id=deste.id)}}"style="color: inherit; text-decoration: none;">
+                                {{ deste.baslik}}
+                            </a>
+                        </h3>
+                        <h6>{{ deste.aciklama}}</h6>
+                        <a href="{{ url_for('study', deste_id=deste.id)}}" class="btn">Başla</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="home-deste">
+                <h2>Hazır Desteler</h2>
+                <div class="block">
+                    {% for deste in admin_deste %}
+                        {% if deste and deste.id !=1 %}
+                    <div class="deste">
+                        <h3>
+                            <a href="{{ url_for('kart_liste', deste_id=deste.id)}}" style="color: inherit; text-decoration: none;">
+                                {{ deste.baslik}}
+                            </a>
+                        </h3>
+                        <h6>{{ deste.aciklama }}</h6>
+                        <a href="{{ url_for('study', deste_id=deste.id)}}" class="btn">Başla</a>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            
+        
+    
+        </div>
+{% endblock%}

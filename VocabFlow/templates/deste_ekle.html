@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Yeni Deste Oluştur
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+{% endblock%}
+
+{% block body %}
+        <div class="login-container">
+            <form method="POST" class="login-form">
+                <h1>Yeni Deste Oluştur</h1>
+                <input type="text" name="baslik" placeholder="Deste Baslik" required>
+                <input type="text" name="aciklama" placeholder="Deste açıklama" required>
+                <button type="submit" class="submit-btn">Deste oluştur</button>
+            </form>
+        </div>
+{% endblock %}

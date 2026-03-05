@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ deste.baslik }} - Kartlar{% endblock%}
+
+{% block body %}
+<br>
+    <div class="home-deste">
+    <h1>{{ deste.baslik }}</h1>
+    <h4>{{ deste.aciklama }}</h4>
+    <div >
+        <h3>Kartlar ({{ kartlar|length }})</h3>
+    </div>
+    
+    <a href="{{ url_for('study', deste_id=deste.id) }}" class="btn">Çalışmaya Başla</a>
+
+    {% if deste.kullanici_id != 1 %}
+        <a href="{{ url_for('kart_ekle', deste_id=deste.id) }}" class="btn">Kart Ekle</a> 
+        <a href="{{ url_for('deste_delete', deste_id =deste.id)}}" class="btn" onclick="return confirm('Desteyi silmek istediğinizden emin misiniz?')">Desteyi Sil</a> 
+    {% endif %}    
+    
+    </div>
+    <br>
+    
+    {% if kartlar %}
+    <div class="liste">
+        {% for kart in kartlar %}
+        
+            <div class="kart-liste">
+                <h2>{{ kart.on_yazi }}</h2>
+                <h5><b>{{ kart.arka_yazi }}</b></h5>
+                {% if kart.cumle %}<h6><i>{{ kart.cumle }}</i></h6>{% endif %}
+
+                {% if deste.kullanici_id != 1 %}
+                    <a href="{{ url_for('kart_update', kart_id=kart.id) }}" class="btn">Düzenle</a>
+                    <br>
+                    <br>
+                    <a href="{{ url_for('kart_delete', kart_id=kart.id) }}" class="btn"  onclick="return confirm('Kartı silmek istediğinizden emin misiniz?')">Kartı Sil</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+        
+    {% else %}
+        <p>Henüz kart eklenmemiş.</p>
+    {% endif %}
+
+{% endblock %}

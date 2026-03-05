@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ deste.baslik }}
+{% endblock%}
+
+{% block body %}
+<br>
+        <div class="study-container" >
+            <h1>{{ deste.baslik }}</h1>
+            {% if kart %}
+            <script id="kart-data" type="application/json">
+                {{ kart | tojson }}
+            </script>
+
+            <div class="flashcard-container">
+                <div class="flashcard">
+                    <div class="flashcard-on">
+                        <h2 id="on-yazi">{{ kart[0].on_yazi }}</h2>
+                    </div>
+                    <div class="flashcard-arka">
+                        <h2 id="arka-yazi">{{ kart[0].arka_yazi }}</h2>
+                        <p class="cumle" id="cumle-text">
+                            {% if kart[0].cumle %}{{ kart[0].cumle }}{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav">
+    <button id="geribtn" disabled>Önceki kart</button>
+    
+    
+    {% if deste.kullanici_id != 1 %}
+        {% if kart[0].fav == 1 %}
+            <a href="{{ url_for('fav_ekle', kart_id=kart[0].id) }}" id="favori-link">Favori Kaldır</a>
+        {% else %}
+            <a href="{{ url_for('fav_ekle', kart_id=kart[0].id) }}" id="favori-link">Favori Ekle</a>
+        {% endif %}
+    {% endif %}
+    
+    <button id="ileribtn" {% if kart|length == 1 %}disabled{% endif %}>Sonraki kart</button>
+</div>
+            
+
+            <script src="{{ url_for('static', filename='script.js') }}"></script>
+            {% else %}
+            <div class="no-kart">
+                <p>Başlamak için kart ekle</p>
+                <a href="{{ url_for('kart_ekle', deste_id=deste.id) }}" class="btn">Kart Ekle</a>
+                <a href="{{ url_for('home') }}" class="btn">Ana Sayfaya dön</a>
+            </div>
+            {% endif %}
+        </div>
+{% endblock %}

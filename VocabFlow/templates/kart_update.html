@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Kart Düzenle{% endblock%}
+
+{% block body %}
+<div class="login-container">
+
+   <div class="home-deste">
+        <h1>Kart Düzenle</h1>
+        <form method="POST" class="login-form">
+            <input type="text" name="on_yazi" value="{{ kart.on_yazi }}" required>
+            <input type="text" name="arka_yazi" value="{{ kart.arka_yazi }}" required>
+            <textarea name="cumle">{{ kart.cumle }}</textarea>
+        
+            <button type="submit" class="submit-btn">Güncelle</button>
+        </form>
+            <div class="form-actions">
+            <a href="{{ url_for('kart_liste', deste_id=kart.deste_id)}}" class="btn">İptal</a>
+            </div>
+        
+    </div>
+</div> 
+{% endblock %}

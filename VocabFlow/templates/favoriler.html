@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Favorilerim{% endblock%}
+
+{% block body %}
+<br>
+    <div class="home-deste">
+        <h1>Favori Kartlarım</h1>
+    </div>
+        <br>
+       
+            {% if kartlar %}
+            <div class="liste">
+                {% for kart in kartlar %}
+                    <div class="kart-liste">
+                        <h3>{{ kart.on_yazi }}</h3>
+                        <p><strong>{{ kart.arka_yazi }}</strong></p>
+                        {% if kart.cumle %}<p style="color: var(--color5)"><em>{{ kart.cumle }}</em></p>{% endif %}
+                    </div>
+                        
+                {% endfor %}
+            
+            {% else %}
+            <div class="container">
+                <h2>Henüz favori kartınız yok.</h2>
+            {% endif %}
+            </div>
+        </div>
+{% endblock %}
