@@ -1,4 +1,5 @@
-#VocabFlow
+VocabFlow
+
 🎯 Project Overview
 
 Vocabulary acquisition plays a critical role in the language learning process. However, traditional methods have several limitations:
